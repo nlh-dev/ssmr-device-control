@@ -93,7 +93,8 @@
                 </div>
             </div>
 
-            <div class="flex justify-end items-center sm:col-span-1 lg:col-span-2 xl:col-span-3">
+            <div class="flex justify-end items-center sm:col-span-1 lg:col-span-2 xl:col-span-3 gap-3">                
+                    <?php include "./app/views/includes/components/buttonBack.php";?>
                 <button type="submit" id="submitButton" class="sm:mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                     Guardar
                 </button>
