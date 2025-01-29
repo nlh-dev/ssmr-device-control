@@ -39,7 +39,6 @@
         <?php
 
         use app\controllers\userController;
-
         $instanceUsers = new userController();
 
         echo $instanceUsers->userListController($url[1], 5, $url[0], "");
