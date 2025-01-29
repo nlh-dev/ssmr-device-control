@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-01-2025 a las 20:32:02
+-- Tiempo de generación: 29-01-2025 a las 20:44:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,18 +24,54 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `departments`
+--
+
+CREATE TABLE `departments` (
+  `department_ID` int(11) NOT NULL,
+  `department_Name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `departments`
+--
+
+INSERT INTO `departments` (`department_ID`, `department_Name`) VALUES
+(1, 'Piso 2A'),
+(2, 'Piso 2B'),
+(3, 'Piso 3A'),
+(4, 'Piso 3B'),
+(5, 'Piso 5A');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `devices`
 --
 
 CREATE TABLE `devices` (
   `device_ID` int(11) NOT NULL,
-  `device_user_ID` int(11) NOT NULL,
+  `device_userFullName` text NOT NULL,
   `device_Description` text NOT NULL,
   `device_serialCode` varchar(50) NOT NULL,
   `device_RoomCode` varchar(50) NOT NULL,
-  `device_Department` varchar(50) NOT NULL,
-  `device_deliveryDate` date NOT NULL,
-  `device_withdrawalDate` date NOT NULL
+  `device_department_ID` int(50) NOT NULL,
+  `device_deliveryDate` varchar(15) NOT NULL,
+  `device_withdrawalDate` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `observations`
+--
+
+CREATE TABLE `observations` (
+  `observation_ID` int(11) NOT NULL,
+  `observation_user` text NOT NULL,
+  `observation_reason` text NOT NULL,
+  `observation_text` text NOT NULL,
+  `observation_creationDate` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,11 +122,23 @@ INSERT INTO `users` (`user_ID`, `user_FirstName`, `user_LastName`, `user_userNam
 --
 
 --
+-- Indices de la tabla `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`department_ID`);
+
+--
 -- Indices de la tabla `devices`
 --
 ALTER TABLE `devices`
   ADD PRIMARY KEY (`device_ID`),
-  ADD KEY `device_user_ID` (`device_user_ID`);
+  ADD KEY `device_department_ID` (`device_department_ID`);
+
+--
+-- Indices de la tabla `observations`
+--
+ALTER TABLE `observations`
+  ADD PRIMARY KEY (`observation_ID`);
 
 --
 -- Indices de la tabla `roles`
@@ -110,10 +158,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `department_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `devices`
 --
 ALTER TABLE `devices`
   MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `observations`
+--
+ALTER TABLE `observations`
+  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -135,7 +195,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `devices`
 --
 ALTER TABLE `devices`
-  ADD CONSTRAINT `devices_ibfk_1` FOREIGN KEY (`device_user_ID`) REFERENCES `users` (`user_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `devices_ibfk_1` FOREIGN KEY (`device_department_ID`) REFERENCES `departments` (`department_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `users`
