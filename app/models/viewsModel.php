@@ -16,10 +16,13 @@ class viewsModel
         "controlStorage",
         "observations",
         "addObservation",
+        "observationDescription",
+        "updateObservations",
         "addControl", 
         "users",
         "addUsers",
         "updateUsers",
+        "departments",
         ];
 
         if (in_array($views, $viewsList)){

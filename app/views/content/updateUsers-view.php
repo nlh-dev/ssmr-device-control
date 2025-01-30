@@ -14,9 +14,7 @@
         //SELECT USER DATA FROM DATABASE
         $userdata = $instanceLogin->selectData("Unique", "users", "user_ID", $userID);
 
-        if ($userdata->rowCount() == 1) { 
-            $userdata = $userdata -> fetch();
-            ?>
+        if ($userdata->rowCount() == 1) { $userdata = $userdata -> fetch(); ?>
 
             <form action="<?= APPURL ?>app/ajax/userAjax.php" class="AjaxForm" method="POST" autocomplete="off">
 
@@ -90,10 +88,10 @@
                     <h3 class="text-lg font-medium">¡Error!</h3>
                 </div>
                 <div class="mt-2 mb-4 text-sm">
-                    No se pudo obtener la información del usuario solicitado
+                    No se pudo obtener el usuario solicitado
                 </div>
                 <div class="flex">
-                    <a type="button" href="<?= APPURL?>users/" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                    <a type="button" href="<?= APPURL?>observations/" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                         Regresar
                     </a>
                 </div>

@@ -5,12 +5,20 @@
 
     use app\controllers\observationController;
 
-    if (isset($_POST['deviceModule'])) {
+    if (isset($_POST['observationModule'])) {
         
         $instanceUser = new observationController();
 
-        if ($_POST['deviceModule'] == "addObservation") {
+        if ($_POST['observationModule'] == "addObservation") {
             echo $instanceUser->addObservationcontroller();
+        }
+        
+        if ($_POST['observationModule'] == "deleteObservation") {
+            echo $instanceUser->deleteObservationcontroller();
+        }
+        
+        if ($_POST['observationModule'] == "updateObservation") {
+            echo $instanceUser->updateObservationcontroller();
         }
     
         
