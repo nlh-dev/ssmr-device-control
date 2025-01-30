@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-01-2025 a las 20:44:45
+-- Tiempo de generación: 30-01-2025 a las 21:00:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -37,11 +37,11 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`department_ID`, `department_Name`) VALUES
-(1, 'Piso 2A'),
-(2, 'Piso 2B'),
-(3, 'Piso 3A'),
-(4, 'Piso 3B'),
-(5, 'Piso 5A');
+(1, 'Piso 2, Lado A'),
+(2, 'Piso 2, Lado B'),
+(3, 'Piso 3, Lado A'),
+(4, 'Piso 3, Lado B'),
+(5, 'Piso 5, Lado A');
 
 -- --------------------------------------------------------
 
@@ -52,6 +52,7 @@ INSERT INTO `departments` (`department_ID`, `department_Name`) VALUES
 CREATE TABLE `devices` (
   `device_ID` int(11) NOT NULL,
   `device_userFullName` text NOT NULL,
+  `device_recievedByName` text NOT NULL,
   `device_Description` text NOT NULL,
   `device_serialCode` varchar(50) NOT NULL,
   `device_RoomCode` varchar(50) NOT NULL,
@@ -59,6 +60,14 @@ CREATE TABLE `devices` (
   `device_deliveryDate` varchar(15) NOT NULL,
   `device_withdrawalDate` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `devices`
+--
+
+INSERT INTO `devices` (`device_ID`, `device_userFullName`, `device_recievedByName`, `device_Description`, `device_serialCode`, `device_RoomCode`, `device_department_ID`, `device_deliveryDate`, `device_withdrawalDate`) VALUES
+(1, 'Usuario Administrador', 'Maria Inciarte', 'Control Samsung', 'HM-2-95', 'A-302', 1, '30/01/2025', ''),
+(2, 'Hector Navarro', 'Maria Inciarte', 'Control Samsung', 'HM-2-800', 'A-302', 1, '30/01/2025', '');
 
 -- --------------------------------------------------------
 
@@ -73,6 +82,13 @@ CREATE TABLE `observations` (
   `observation_text` text NOT NULL,
   `observation_creationDate` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `observations`
+--
+
+INSERT INTO `observations` (`observation_ID`, `observation_user`, `observation_reason`, `observation_text`, `observation_creationDate`) VALUES
+(1, 'Usuario Administrador', 'Prueba', 'Prueba', '30/01/2025');
 
 -- --------------------------------------------------------
 
@@ -167,13 +183,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `observations`
 --
 ALTER TABLE `observations`
-  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
