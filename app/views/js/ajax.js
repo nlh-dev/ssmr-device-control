@@ -68,7 +68,7 @@ function ajaxAlert(alert) {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        document.querySelector(".AjaxForm").reset();
+       document.querySelector(".AjaxForm").reset();
       }
     });
   } else if (alert.type == "redirect") {

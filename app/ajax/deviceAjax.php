@@ -12,6 +12,10 @@
         if ($_POST['deviceModule'] == "addDevice") {
             echo $instanceDevice -> addDevicecontroller();
         }
+        
+        if ($_POST['deviceModule'] == "deleteDevice") {
+            echo $instanceDevice -> deleteDevicecontroller();
+        }
     } else {
         session_destroy();
         header("Location: " . APPURL . "login/");

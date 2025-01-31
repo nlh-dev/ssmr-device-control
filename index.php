@@ -23,9 +23,12 @@ if (isset($_GET['views'])) {
 <body>
     <?php
 
-    use app\controllers\observationController;
     use app\controllers\loginController;
     use app\controllers\viewsController;
+    use app\controllers\observationController;
+    use app\controllers\deviceController;
+
+    $instanceDevices = new deviceController();
 
     $instanceObservations = new observationController();
 

@@ -48,7 +48,9 @@ class loginController extends mainModel
                     </script>
                     ";
                 } else {
-                    $checkUser = $this->dbRequestExecute("SELECT * FROM users WHERE user_userName = '$loginUser'");
+                    $checkUser = $this->dbRequestExecute("SELECT * FROM users 
+                    JOIN roles ON users.user_role_ID = roles.role_ID 
+                    WHERE user_userName = '$loginUser'");
                     if ($checkUser->rowCount() == 1) {
                         $checkUser = $checkUser->fetch();
                         if ($checkUser['user_userName'] == $loginUser && $checkUser['user_Password'] == $loginPassword) {
@@ -58,6 +60,7 @@ class loginController extends mainModel
                             $_SESSION['userName'] = $checkUser['user_userName'];
                             $_SESSION['password'] = $checkUser['user_Password'];
                             $_SESSION['role'] = $checkUser['user_role_ID'];
+                            $_SESSION['roleName'] = $checkUser['role_Name'];
 
                             if (headers_sent()) {
                                 echo "

@@ -83,9 +83,19 @@ class observationController extends mainModel{
         $page = (isset($page) && $page > 0) ? (int) $page : 1;
         $start = ($page > 0) ? (($page * $register) - $register) : 0;
 
-        $dataRequest_Query = "SELECT * FROM observations WHERE observation_user LIKE '%$search%' OR observation_reason LIKE '%$search%' OR observation_text LIKE '%$search%' OR observation_creationDate LIKE '%$search%' ORDER BY observation_ID ASC LIMIT $start,$register";
+        $dataRequest_Query = "SELECT * FROM observations 
+        WHERE observation_user LIKE '%$search%' 
+        OR observation_reason LIKE '%$search%' 
+        OR observation_text LIKE '%$search%' 
+        OR observation_creationDate LIKE '%$search%' 
+        ORDER BY observation_ID 
+        ASC LIMIT $start,$register";
 
-        $totalData_Query = "SELECT COUNT(observation_ID) FROM observations WHERE observation_user LIKE '%$search%' OR observation_reason LIKE '%$search%' OR observation_text LIKE '%$search%' OR observation_creationDate LIKE '%$search%'";
+        $totalData_Query = "SELECT COUNT(observation_ID) FROM observations
+        WHERE observation_user LIKE '%$search%'
+        OR observation_reason LIKE'%$search%' 
+        OR observation_text LIKE '%$search%'
+        OR observation_creationDate LIKE '%$search%'";
 
         $data = $this->dbRequestExecute($dataRequest_Query);
         $data = $data->fetchAll();
@@ -102,7 +112,7 @@ class observationController extends mainModel{
                                     <th scope="col" class="px-6 py-3">#</th>
                                     <th scope="col" class="px-6 py-3">Creado por</th>
                                     <th scope="col" class="px-6 py-3">Fecha de Creación</th>
-                                    <th scope="col" class="px-6 py-3">Motivo y Descripción</th>
+                                    <th scope="col" class="px-6 py-3 text-center">Motivo y Descripción</th>
                                     <th scope="col" class="px-6 py-3">
                                         <span class="sr-only">Edit</span>
                                     </th>

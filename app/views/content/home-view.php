@@ -19,7 +19,7 @@
 
         <div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             <div class="p-6 bg-gray-800 rounded-lg dark:bg-gray-800 hover:bg-gray-900">
-                <a href="<?= APPURL ?>controlPanel/">
+                <a href="<?= APPURL ?>devicePanel/">
                     <div class="flex justify-start items-center">
                         <svg class="w-8 h-8 text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Zm2 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Z" clip-rule="evenodd" />
@@ -33,7 +33,7 @@
             </div>
 
             <div class="p-6 bg-gray-800 rounded-lg dark:bg-gray-800 hover:bg-gray-900">
-                <a href="<?= APPURL ?>controlStorage/">
+                <a href="<?= APPURL ?>deviceStorage/">
                     <div class="flex justify-start items-center">
                         <svg class="w-8 h-8 text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd" />
@@ -47,7 +47,7 @@
             </div>
 
             <div class="p-6 bg-gray-800 rounded-lg dark:bg-gray-800 hover:bg-gray-900">
-                <a href="<?= APPURL ?>controlStorage/">
+                <a href="<?= APPURL ?>observations/">
                     <div class="flex justify-start items-center">
                         <svg class="w-8 h-8 text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />

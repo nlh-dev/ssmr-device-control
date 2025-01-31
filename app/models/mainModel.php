@@ -23,7 +23,7 @@
         }
 
         // FUNCTION TO EXECUTE A REQUEST DATA TO DATABASE
-        protected function dbRequestExecute($dbRequest){
+        public function dbRequestExecute($dbRequest){
 			$dbRequest_SQL=$this->dbConnect()->prepare($dbRequest);
 			$dbRequest_SQL->execute();
 			return $dbRequest_SQL;
