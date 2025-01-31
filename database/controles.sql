@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-01-2025 a las 21:00:10
+-- Tiempo de generación: 31-01-2025 a las 20:43:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -58,16 +58,17 @@ CREATE TABLE `devices` (
   `device_RoomCode` varchar(50) NOT NULL,
   `device_department_ID` int(50) NOT NULL,
   `device_deliveryDate` varchar(15) NOT NULL,
-  `device_withdrawalDate` varchar(15) NOT NULL
+  `device_withdrawalDate` varchar(15) NOT NULL,
+  `device_withdrawalUser` text NOT NULL,
+  `device_isDelivered` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `devices`
 --
 
-INSERT INTO `devices` (`device_ID`, `device_userFullName`, `device_recievedByName`, `device_Description`, `device_serialCode`, `device_RoomCode`, `device_department_ID`, `device_deliveryDate`, `device_withdrawalDate`) VALUES
-(1, 'Usuario Administrador', 'Maria Inciarte', 'Control Samsung', 'HM-2-95', 'A-302', 1, '30/01/2025', ''),
-(2, 'Hector Navarro', 'Maria Inciarte', 'Control Samsung', 'HM-2-800', 'A-302', 1, '30/01/2025', '');
+INSERT INTO `devices` (`device_ID`, `device_userFullName`, `device_recievedByName`, `device_Description`, `device_serialCode`, `device_RoomCode`, `device_department_ID`, `device_deliveryDate`, `device_withdrawalDate`, `device_withdrawalUser`, `device_isDelivered`) VALUES
+(1, 'HECTOR NAVARRO', 'DANNY MORAN', 'CONTROL SAMSUNG', 'HM-2-900', 'A-301', 3, '31/01/2025', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ CREATE TABLE `observations` (
 --
 
 INSERT INTO `observations` (`observation_ID`, `observation_user`, `observation_reason`, `observation_text`, `observation_creationDate`) VALUES
-(1, 'Usuario Administrador', 'Prueba', 'Prueba', '30/01/2025');
+(1, 'Usuario Administrador', 'Prueba', 'Prueba de edicion en otro usuario', '30-01-2025');
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `observations`

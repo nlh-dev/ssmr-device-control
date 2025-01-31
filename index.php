@@ -29,9 +29,7 @@ if (isset($_GET['views'])) {
     use app\controllers\deviceController;
 
     $instanceDevices = new deviceController();
-
     $instanceObservations = new observationController();
-
     $instanceLogin = new loginController();
 
     $viewsController = new viewsController();
