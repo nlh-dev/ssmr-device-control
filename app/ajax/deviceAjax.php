@@ -10,12 +10,21 @@
         $instanceDevice = new deviceController();
 
         if ($_POST['deviceModule'] == "addDevice") {
-            echo $instanceDevice -> addDevicecontroller();
+            echo $instanceDevice -> addDeviceController();
+        }
+
+        if ($_POST['deviceModule'] == "deleteDevice") {
+            echo $instanceDevice -> deleteDeviceController();
+        }
+
+        if ($_POST['deviceModule'] == "updateDevice") {
+            echo $instanceDevice -> updateDeviceController();
         }
         
-        if ($_POST['deviceModule'] == "deleteDevice") {
-            echo $instanceDevice -> deleteDevicecontroller();
+        if ($_POST['deviceModule'] == "withdrawDevice") {
+            echo $instanceDevice -> withdrawDeviceController();
         }
+        
     } else {
         session_destroy();
         header("Location: " . APPURL . "login/");

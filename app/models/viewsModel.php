@@ -16,6 +16,8 @@ class viewsModel
         "addDevice", 
         "deviceStorage",
         "deviceDescription",
+        "withdrawDevice",
+        "updateDevices",
         "observations",
         "addObservation",
         "observationDescription",
