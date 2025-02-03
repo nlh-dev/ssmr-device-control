@@ -98,7 +98,7 @@
                     $table .= '
                         <tr class="bg-white border-b hover:bg-gray-200">
                             <td class="px-6 py-3 uppercase"> ' . $counter . ' </td>
-                            <td class="px-6 py-3">' . $rows['department_Name'] . '</td>
+                            <td class="px-6 py-3 uppercase">' . $rows['department_Name'] . '</td>
                             <td class="px-6 py-3 flex items-center text-center">
                                 <a href="' . APPURL . 'updateDepartment/' . $rows['department_ID'] . '/" class="bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
                                     <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
