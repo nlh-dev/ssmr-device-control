@@ -68,6 +68,15 @@
                     <p class="font-bold mr-1">Motivo: </p>
                     <?= $observationData['observation_reason'] ?>
                 </div>
+
+                <div>
+                    <p class="font-bold mr-1">Estado: </p>
+                    <?php if ($observationData['observation_isChecked'] != true) {?>
+                        <span class="bg-red-700 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-md">No Realizada</span>
+                     <?php } else { ?>
+                        <span class="bg-green-700 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-md">Realizada</span>
+                     <?php } ?>
+                </div>
             </div>
             <hr class="border-t border-gray-500">
             <div class="mt-5">

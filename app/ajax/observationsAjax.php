@@ -20,6 +20,10 @@
         if ($_POST['observationModule'] == "updateObservation") {
             echo $instanceUser->updateObservationcontroller();
         }
+
+        if ($_POST['observationModule'] == "checkObservation") {
+            echo $instanceUser->checkObservationcontroller();
+        }
     
         
     } else {

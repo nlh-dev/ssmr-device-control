@@ -1,34 +1,35 @@
 <?php
 
-    namespace app\controllers;
-    use app\models\mainModel;
+namespace app\controllers;
 
-    class departmentsController extends mainModel{
-        
-        public function getDepartmentsController(){
-            $getDepartments_Query = "SELECT * FROM departments";
-            $getDepartments_SQL = $this -> dbRequestExecute($getDepartments_Query);
-            $getDepartments_SQL -> execute();
-            return $getDepartments_SQL;
+use app\models\mainModel;
+
+class departmentsController extends mainModel{
+
+    public function getDepartmentsController(){
+        $getDepartments_Query = "SELECT * FROM departments";
+        $getDepartments_SQL = $this->dbRequestExecute($getDepartments_Query);
+        $getDepartments_SQL->execute();
+        return $getDepartments_SQL;
+    }
+
+    public function addDepartmentsController(){
+        $departmentName = strtoupper($this->cleanRequest($_POST['departmentName']));
+
+        if (empty($departmentName)) {
+            $alert = [
+                "type" => "simple",
+                "icon" => "error",
+                "title" => "¡Error!",
+                "text" => "¡El campo se encuentra vacio!",
+            ];
+            return json_encode($alert);
+            exit();
         }
 
-        public function addDepartmentsController(){
-            $departmentName = strtoupper($this->cleanRequest($_POST['departmentName']));
+        $checkDepartment = $this->dbRequestExecute("SELECT * FROM departments WHERE department_Name = '$departmentName'");
 
-            if (empty($departmentName)) {
-                $alert = [
-                    "type" => "simple",
-                    "icon" => "error",
-                    "title" => "¡Error!",
-                    "text" => "¡El campo se encuentra vacio!",
-                ];
-                return json_encode($alert);
-                exit();
-            }
-
-            $checkDepartment = $this -> dbRequestExecute("SELECT * FROM departments WHERE department_Name = '$departmentName'");
-        
-        if ($checkDepartment -> rowCount() >= 1) {
+        if ($checkDepartment->rowCount() >= 1) {
             $alert = [
                 "type" => "simple",
                 "icon" => "error",
@@ -38,47 +39,38 @@
             return json_encode($alert);
             exit();
         }
+    }
 
-        }
+    public function departmentsListController($page, $register, $url, $search){
 
-        public function deleteDepartmentsController(){
+        $page = $this->cleanRequest($page);
+        $register = $this->cleanRequest($register);
 
-        }
+        $url = $this->cleanRequest($url);
+        $url = APPURL . $url . "/";
 
-        public function updateDepartmentsController(){
+        $search = $this->cleanRequest($search);
+        $table = "";
 
-        }
+        $page = (isset($page) && $page > 0) ? (int) $page : 1;
+        $start = ($page > 0) ? (($page * $register) - $register) : 0;
 
-        public function departmentsListController($page, $register, $url, $search){
-
-            $page = $this->cleanRequest($page);
-            $register = $this->cleanRequest($register);
-    
-            $url = $this->cleanRequest($url);
-            $url = APPURL . $url . "/";
-    
-            $search = $this->cleanRequest($search);
-            $table = "";
-    
-            $page = (isset($page) && $page > 0) ? (int) $page : 1;
-            $start = ($page > 0) ? (($page * $register) - $register) : 0;
-    
-            $dataRequest_Query = "SELECT * FROM departments 
+        $dataRequest_Query = "SELECT * FROM departments 
             WHERE department_Name LIKE '%$search%' 
             ORDER BY department_Name ASC LIMIT $start,$register";
-    
-            $totalData_Query = "SELECT COUNT(department_ID) FROM departments 
+
+        $totalData_Query = "SELECT COUNT(department_ID) FROM departments 
             WHERE department_Name LIKE '%$search%'";
-    
-            $data = $this->dbRequestExecute($dataRequest_Query);
-            $data = $data->fetchAll();
-    
-            $total = $this->dbRequestExecute($totalData_Query);
-            $total = (int) $total->fetchColumn();
-    
-            $numPages = ceil($total / $register);
-    
-            $table .= '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-3">
+
+        $data = $this->dbRequestExecute($dataRequest_Query);
+        $data = $data->fetchAll();
+
+        $total = $this->dbRequestExecute($totalData_Query);
+        $total = (int) $total->fetchColumn();
+
+        $numPages = ceil($total / $register);
+
+        $table .= '<div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-3">
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                                 <thead class="text-base text-white uppercase bg-gray-800">
                                     <tr>
@@ -90,12 +82,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>';
-    
-            if ($total >= 1 && $page <= $numPages) {
-                $counter = $start + 1;
-                $startPage = $start + 1;
-                foreach ($data as $rows) {
-                    $table .= '
+
+        if ($total >= 1 && $page <= $numPages) {
+            $counter = $start + 1;
+            $startPage = $start + 1;
+            foreach ($data as $rows) {
+                $table .= '
                         <tr class="bg-white border-b hover:bg-gray-200">
                             <td class="px-6 py-3 uppercase"> ' . $counter . ' </td>
                             <td class="px-6 py-3 uppercase">' . $rows['department_Name'] . '</td>
@@ -107,7 +99,7 @@
                                     </svg>
                                 </a>
                                 
-                                <form class="AjaxForm" action="' . APPURL . 'app/ajax/deviceAjax.php" method="POST">
+                                <form class="AjaxForm" action="' . APPURL . 'app/ajax/departmentsAjax.php" method="POST">
     
                                     <input type="hidden" name="departmentModule" value="deleteDepartment">
     
@@ -123,12 +115,12 @@
                             </td>
                         </tr>
                     ';
-                    $counter++;
-                }
-                $finalPage = $counter - 1;
-            } else {
-                if ($total >= 1) {
-                    $table .= '
+                $counter++;
+            }
+            $finalPage = $counter - 1;
+        } else {
+            if ($total >= 1) {
+                $table .= '
                         <tr class="bg-white border-b hover:bg-gray-200" >
                             <td colspan="6">
                             <div class= "flex justify-center items-center my-4">
@@ -142,8 +134,8 @@
                             </td>
                         </tr>
                     ';
-                } else {
-                    $table .= '
+            } else {
+                $table .= '
                         <tr class="bg-white border-b hover:bg-gray-200">
                             <td colspan="6">
                             <div class= "flex justify-center items-center my-4">
@@ -152,20 +144,62 @@
                             </td>
                         </tr>
                     ';
-                }
             }
-            $table .= '</tbody></table></div>';
-    
-    
-            if ($total > 0 && $page <= $numPages) {
-                $table .= '<div class="flex justify-end items-center">
+        }
+        $table .= '</tbody></table></div>';
+
+
+        if ($total > 0 && $page <= $numPages) {
+            $table .= '<div class="flex justify-end items-center">
                                 <p class="has-text-right">
                                     Mostrando de <strong>' . $startPage . '</strong> a <strong>' .  $finalPage . ' </strong> de un total de <strong> ' . $total . '</strong> registros
                                 </p>
                             </div>';
-    
-                $table .= $this->paginationData($page, $numPages, $url, 1);
-            }
-            return $table;
+
+            $table .= $this->paginationData($page, $numPages, $url, 1);
         }
+        return $table;
     }
+
+    public function deleteDepartmentsController(){
+
+        $departmentID = $this->cleanRequest($_POST['department_ID']);
+
+        $checkDeleteDepartments_Query = "SELECT * FROM departments 
+        JOIN devices ON departments.department_ID = devices.device_department_ID";
+        $checkDeleteDepartments_SQL = $this->dbRequestExecute($checkDeleteDepartments_Query);
+        if ($checkDeleteDepartments_SQL->rowCount() >= 1) {
+            $alert = [
+                "type" => "simple",
+                "icon" => "warning",
+                "title" => "Departamento no Eliminado!",
+                "text" => "No pudes eliminar este departamento!"
+            ];
+            return json_encode($alert);
+            exit();
+        }
+
+        $deleteDepartment_Query = "DELETE FROM departments WHERE department_ID = $departmentID";
+        $deleteDepartment_SQL = $this->dbRequestExecute($deleteDepartment_Query);
+        if ($deleteDepartment_SQL->rowCount() == 1) {
+            $alert = [
+                "type" => "reload",
+                "icon" => "success",
+                "title" => "Departamento Eliminado!",
+                "text" => "Departamento eliminado exitosamente!"
+            ];
+        } else {
+            $alert = [
+                "type" => "simple",
+                "icon" => "error",
+                "title" => "¡Error!",
+                "text" => "¡Error al eliminar Departamento, intente nuevamente!"
+            ];
+        }
+        return json_encode($alert);
+    }
+
+    public function updateDepartmentsController(){
+
+    }
+}

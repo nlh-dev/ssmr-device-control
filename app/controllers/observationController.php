@@ -52,6 +52,11 @@ class observationController extends mainModel{
                 "db_ValueName" => ":creationDate",
                 "db_realValue" => $observationDate
             ],
+            [
+                "db_FieldName" => "observation_isChecked",
+                "db_ValueName" => ":isObservationChecked",
+                "db_realValue" => false
+            ],
         ];
 
         $addObservation = $this->saveData("observations", $observationRegisterData);
@@ -144,13 +149,26 @@ class observationController extends mainModel{
                         </td>
                         <td class="px-6 py-3 text-center">
                             <div class="flex justify-center items-center">
-                            <a href="' . APPURL . 'updateObservations/' . $rows['observation_ID'] . '/" class="bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
+                            <form class="AjaxForm" action="' . APPURL . 'app/ajax/observationsAjax.php" method="POST">
+
+                                <input type="hidden" name="observationModule" value="checkObservation">
+
+                                <input type="hidden" name="observation_ID" value="' . $rows['observation_ID'] . '">
+
+                                <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
+                                    <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                          <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
+                                    </svg>
+
+                                </button>
+                            </form>
+                                <a href="' . APPURL . 'updateObservations/' . $rows['observation_ID'] . '/" class="bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
                                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z" clip-rule="evenodd" />
                                     <path fill-rule="evenodd" d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z" clip-rule="evenodd" />
                                 </svg>
                             </a>
-                            
+
                             <form class="AjaxForm" action="' . APPURL . 'app/ajax/observationsAjax.php" method="POST">
 
                                 <input type="hidden" name="observationModule" value="deleteObservation">
@@ -286,6 +304,66 @@ class observationController extends mainModel{
             ];
         }
         return json_encode($alert);
+    }
+
+    public function checkObservationcontroller(){
+        $observationID = $this -> cleanRequest($_POST['observation_ID']);
+        $observationData = $this -> dbRequestExecute("SELECT * FROM observations WHERE observation_ID = '$observationID'");
+        if($observationData -> rowCount() <= 0){
+            $alert=[
+                "type"=>"simple",
+                "icon"=>"error",
+                "title"=>"¡Error!",
+                "text"=>"Observación no Encontrada",
+            ];
+            return json_encode($alert);
+            exit();
+        }else{
+            $observationData = $observationData -> fetch();
+        }
+
+        $isCheckedObservation_Query = "SELECT observation_isChecked 
+        FROM observations WHERE observation_isChecked = 1";
+        $isCheckedObservation_SQL = $this -> dbRequestExecute($isCheckedObservation_Query);
+        if ($isCheckedObservation_SQL -> rowCount() >= 1) {
+            $alert=[
+                "type"=>"simple",
+                "icon"=>"warning",
+                "title"=>"¡Error al realizar!",
+                "text"=>"Observación previamente realizada",
+            ];
+            return json_encode($alert);
+            exit();
+        }
+
+        $observationDataUpdate=[
+            [
+                "db_FieldName" => "observation_isChecked",
+                "db_ValueName" => ":isChecked",
+                "db_realValue" => true
+            ]];
+
+        $observationCondition=[
+            "condition_FieldName" => "observation_ID",
+            "condition_ValueName" => ":ID",
+            "condition_realValue" => $observationID];
+
+            if($this->updateData("observations", $observationDataUpdate, $observationCondition)){
+                $alert=[
+                    "type"=>"reload",
+                    "icon"=>"success",
+                    "title"=>"¡Operacion Realizada!",
+                    "text"=>"Observación realizada exitosamente",
+                ];
+            }else{
+                $alert=[
+                    "type"=>"simple",
+                    "icon"=>"error",
+                    "title"=>"¡Error!",
+                    "text"=>"Error al realizar Observación, intente nuevamente",
+                ];
+            }
+            return json_encode($alert);
     }
 
     public function deleteObservationcontroller(){

@@ -72,7 +72,7 @@ function ajaxAlert(alert) {
       }
     });
   } else if (alert.type == "redirect") {
-    window.location.href = alert.url;
+      window.location.href=alert.url;
   }
 }
 

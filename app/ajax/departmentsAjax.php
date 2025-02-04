@@ -7,18 +7,18 @@
 
     if (isset($_POST['departmentModule'])) {
         
-        $instanceUser = new departmentsController();
+        $instanceDepartments = new departmentsController();
 
         if ($_POST['departmentModule'] == "addDepartment") {
-            echo $instanceUser->addDepartmentsController();
+            echo $instanceDepartments->addDepartmentsController();
         }
         
         if ($_POST['departmentModule'] == "deleteDepartment") {
-            echo $instanceUser->deleteDepartmentsController();
+            echo $instanceDepartments->deleteDepartmentsController();
         }
         
         if ($_POST['departmentModule'] == "updateDepartment") {
-            echo $instanceUser->updateDepartmentsController();
+            echo $instanceDepartments->updateDepartmentsController();
         }
     
         

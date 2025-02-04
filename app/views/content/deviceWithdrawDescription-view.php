@@ -16,7 +16,7 @@
                         <svg class="rtl:rotate-180 w-5 h-5 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                         </svg>
-                        <a href="<?= APPURL ?>observations/" class="ms-1 text-lg font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Control de Entrega</a>
+                        <a href="<?= APPURL ?>deviceStorage/" class="ms-1 text-lg font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Entregas Previas</a>
                     </div>
                 </li>
                 <li>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="items-center">
                     <p class="font-bold mr-1">Fecha de Entrega: </p>
-                        <?= $deviceData['device_deliveryDate'] ?>
+                    <?= $deviceData['device_deliveryDate'] ?>
                 </div>
                 <div class="items-center">
                     <p class="font-bold mr-1">Descripción de Articulo: </p>
@@ -96,30 +96,59 @@
                         <span class="bg-green-700 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-md">Dispositivo Entregado</span>
                     <?php } ?>
                 </div>
+
             </div>
 
-            <div class="flex justify-end items-center sm:col-span-1 lg:col-span-2 xl:col-span-3 gap-3 mt-5">
-                <?php include "./app/views/includes/components/returnButton.php"; ?>
+            <div class="my-2">
+                <hr class="border-t border-gray-400">
             </div>
 
-        <?php } else { ?>
-            <div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
-                <div class="flex items-center">
-                    <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                    </svg>
-                    <span class="sr-only">Info</span>
-                    <h3 class="text-lg font-medium">¡Error!</h3>
-                </div>
-                <div class="mt-2 mb-4 text-sm">
-                    No se pudo obtener el dispositivo solicitado
-                </div>
-                <div class="flex">
-                    <a type="button" href="<?= APPURL ?>devicePanel/" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                        Regresar
-                    </a>
-                </div>
+            <div class="flex items-center my-5">
+                <svg class="w-6 h-6 text-gray-800 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd" />
+                </svg>
+                <h1 class="text-strong text-xl font-bold text-gray-800">Información de Retiro de Dispositivo</h1>
             </div>
-        <?php } ?>
+            <div class="mb-4 items-center justify-between">
+                <div>
+                </div>
+                <div class="grid mb-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+                    <div class="items-center">
+                        <p class="font-bold mr-1">Retirado por: </p>
+                        <?= $deviceData['device_withdrawByName'] ?>
+                    </div>
+
+                    <div class="items-center">
+                        <p class="font-bold mr-1">Entregado por: </p>
+                        <?= $deviceData['device_returnedByName'] ?>
+                    </div>
+                    <div class="items-center">
+                        <p class="font-bold mr-1">Fecha de Retiro: </p>
+                        <?= $deviceData['device_withdrawalDate'] ?>
+                    </div>
+                </div>
+                <div class="flex justify-end items-center sm:col-span-1 lg:col-span-2 xl:col-span-3 gap-3 mt-5">
+                    <?php include "./app/views/includes/components/returnButton.php"; ?>
+                </div>
+
+            <?php } else { ?>
+                <div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+                    <div class="flex items-center">
+                        <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <h3 class="text-lg font-medium">¡Error!</h3>
+                    </div>
+                    <div class="mt-2 mb-4 text-sm">
+                        No se pudo obtener el dispositivo solicitado
+                    </div>
+                    <div class="flex">
+                        <a type="button" href="<?= APPURL ?>deviceStorage/" class="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                            Regresar
+                        </a>
+                    </div>
+                </div>
+            <?php } ?>
+            </div>
     </div>
-</div>

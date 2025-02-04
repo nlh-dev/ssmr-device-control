@@ -16,8 +16,10 @@ class viewsModel
         "addDevice", 
         "deviceStorage",
         "deviceDescription",
+        "deviceWithdrawDescription",
         "withdrawDevice",
         "updateDevices",
+        "updateWithdrawDevices",
         "observations",
         "addObservation",
         "observationDescription",
@@ -40,7 +42,6 @@ class viewsModel
         }else {
             $content = "404";
         }
-
         return $content;
     }
 }
