@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-02-2025 a las 20:51:51
+-- Tiempo de generación: 04-02-2025 a las 20:47:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -37,11 +37,9 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`department_ID`, `department_Name`) VALUES
-(1, 'Piso 2, Lado A'),
-(2, 'Piso 2, Lado B'),
-(3, 'Piso 3, Lado A'),
-(4, 'Piso 3, Lado B'),
-(5, 'Piso 5, Lado A');
+(1, 'PISO 2, LADO A'),
+(2, 'PISO 2, LADO B'),
+(3, 'PISO 3, LADO A');
 
 -- --------------------------------------------------------
 
@@ -69,9 +67,7 @@ CREATE TABLE `devices` (
 --
 
 INSERT INTO `devices` (`device_ID`, `device_userFullName`, `device_recievedByName`, `device_Description`, `device_serialCode`, `device_RoomCode`, `device_department_ID`, `device_deliveryDate`, `device_withdrawalDate`, `device_withdrawByName`, `device_returnedByName`, `device_isDelivered`) VALUES
-(3, 'USUARIO ADMINISTRADOR', 'DANNY MORAN', 'CONTROL SAMSUNG', 'HM-2-900', 'A-300', 5, '03/02/2025', '03/02/2025', 'USUARIO ADMINISTRADOR', 'MARIA', 0),
-(4, 'USUARIO ADMINISTRADOR', 'JUAN BOZO', 'CONTROL SAMSUNG', 'HM-2-500', 'A-315', 3, '03/02/2025', '03/02/2025', 'USUARIO ADMINISTRADOR', 'JUAN BOZO', 0),
-(5, 'USUARIO ADMINISTRADOR', 'DAVID HERRERA', 'CONTROL SAMSUNG', 'HM-2-900', 'A-314', 1, '03/02/2025', '', '', '', 1);
+(1, 'USUARIO ADMINISTRADOR', 'DANNY MORAN', 'CONTROL SAMSUNG', 'HM-2-636', 'A-303', 1, '04/02/2025', '07/02/2025', 'USUARIO ADMINISTRADOR', 'JUAN BOZO', 0);
 
 -- --------------------------------------------------------
 
@@ -84,15 +80,9 @@ CREATE TABLE `observations` (
   `observation_user` text NOT NULL,
   `observation_reason` text NOT NULL,
   `observation_text` text NOT NULL,
-  `observation_creationDate` varchar(15) NOT NULL
+  `observation_creationDate` varchar(15) NOT NULL,
+  `observation_isChecked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `observations`
---
-
-INSERT INTO `observations` (`observation_ID`, `observation_user`, `observation_reason`, `observation_text`, `observation_creationDate`) VALUES
-(1, 'Usuario Administrador', 'Prueba', 'Prueba de edicion en otro usuario', '30-01-2025');
 
 -- --------------------------------------------------------
 
@@ -187,13 +177,13 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT de la tabla `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `observations`
 --
 ALTER TABLE `observations`
-  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -215,7 +205,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `devices`
 --
 ALTER TABLE `devices`
-  ADD CONSTRAINT `devices_ibfk_1` FOREIGN KEY (`device_department_ID`) REFERENCES `departments` (`department_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `devices_ibfk_1` FOREIGN KEY (`device_department_ID`) REFERENCES `departments` (`department_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `users`
