@@ -27,8 +27,8 @@ class userController extends mainModel{
         if (empty($firstName) || empty($lastName) || empty($userName) || empty($userPassword) || empty($userRole)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Usuario!",
                 "text" => "¡Algunos campos se encuentran vacios!",
             ];
             return json_encode($alert);
@@ -39,8 +39,8 @@ class userController extends mainModel{
         if ($this->verifyData("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}", $firstName)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Usuario!",
                 "text" => "¡Formato de nombre invalido!",
             ];
             return json_encode($alert);
@@ -50,8 +50,8 @@ class userController extends mainModel{
         if ($this->verifyData("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}", $lastName)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Usuario!",
                 "text" => "¡Formato de apellido invalido!",
             ];
             return json_encode($alert);
@@ -63,8 +63,8 @@ class userController extends mainModel{
         if ($checkUser->rowCount() > 0) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Usuario!",
                 "text" => "¡El usuario ingresado ya se encuentra registrado!",
             ];
             return json_encode($alert);
@@ -112,7 +112,7 @@ class userController extends mainModel{
             $alert = [
                 "type" => "simple",
                 "icon" => "error",
-                "title" => "¡Error!",
+                "title" => "¡Error al crear Usuario!",
                 "text" => "¡El usuario no pudo ser registrado!",
             ];
         }
@@ -284,7 +284,7 @@ class userController extends mainModel{
             $alert = [
                 "type" => "simple",
                 "icon" => "error",
-                "title" => "¡Error!",
+                "title" => "¡Error al eliminar Usuario!",
                 "text" => "Usuario no Encontrado"
             ];
             return json_encode($alert);
@@ -305,7 +305,7 @@ class userController extends mainModel{
             $alert = [
                 "type" => "simple",
                 "icon" => "error",
-                "title" => "¡Error!",
+                "title" => "¡Error al eliminar Usuario!",
                 "text" => "Usuario " . $userData['user_FirstName'] . " " . $userData['usuario_apellido'] . " no eliminado, intente nuevamente"
             ];
         }
@@ -319,8 +319,8 @@ class userController extends mainModel{
         if($userData -> rowCount() <= 0){
             $alert=[
                 "tipo"=>"simple",
-                "titulo"=>"¡Error!",
-                "texto"=>"Usuario no encontrado",
+                "titulo"=>"¡Error al actualzizar Usuario!",
+                "texto"=>"¡Usuario no encontrado!",
                 "icono"=>"error"
             ];
             return json_encode($alert);
@@ -339,7 +339,7 @@ class userController extends mainModel{
         if($firstName=="" || $lastName=="" || $userName==""){
             $alert=[
                 "type"=>"simple",
-                "icon"=>"error",
+                "icon"=>"warning",
                 "title"=>"¡Error!",
                 "text"=>"¡Algunos campos se encuentran vacios!",
             ];
@@ -351,8 +351,8 @@ class userController extends mainModel{
         if($this->verifyData("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}",$firstName)){
             $alert=[
                 "type"=>"simple",
-                "icon"=>"error",
-                "title"=>"¡Error!",
+                "icon"=>"warning",
+                "title"=>"¡Error al actualizar Usuario!",
                 "text"=>"Formate de Nombre Invalido",
             ];
             return json_encode($alert);
@@ -362,8 +362,8 @@ class userController extends mainModel{
         if($this->verifyData("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}",$lastName)){
             $alert=[
                 "type"=>"simple",
-                "icon"=>"error",
-                "title"=>"¡Error!",
+                "icon"=>"warning",
+                "title"=>"¡Error al actualizar Usuario!",
                 "text"=>"Formato de Apellido Invalido",
             ];
             return json_encode($alert);
@@ -373,8 +373,8 @@ class userController extends mainModel{
         if($this->verifyData("[a-zA-Z0-9]{4,20}",$userName)){
             $alert=[
                 "type"=>"simple",
-                "icon"=>"error",
-                "title"=>"¡Error!",
+                "icon"=>"warning",
+                "title"=>"¡Error al actualizar Usuario!",
                 "text"=>"Formato de Nombre de Usuario Invalido",
             ];
             return json_encode($alert);
@@ -429,7 +429,7 @@ class userController extends mainModel{
             $alert=[
                 "type"=>"simple",
                 "icon"=>"error",
-                "title"=>"¡Error!",
+                "title"=>"¡Error al actualizar!",
                 "text"=>"El Usuario ".$userData['user_FirstName']." ".$userData['user_LastName']." no pudo ser actualizado, intente nuevamente",
             ];
         }

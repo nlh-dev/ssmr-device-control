@@ -1,8 +1,7 @@
 <?php
 
-namespace app\controllers;
-
-use app\models\mainModel;
+    namespace app\controllers;
+    use app\models\mainModel;
 
 
 class loginController extends mainModel
@@ -17,9 +16,9 @@ class loginController extends mainModel
             echo "
                 <script>
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: 'Algunos campos están vacios',
+                        icon: 'warning',
+                        title: '¡Error al ingresar!',
+                        text: '¡Algunos campos están vacios!',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#3085d6'});
                 </script>";
@@ -28,9 +27,9 @@ class loginController extends mainModel
                 echo "
                 <script>
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: 'Formato de Usuario no Permitido',
+                        icon: 'warning',
+                        title: '¡Error al ingresar!',
+                        text: '¡Formato de Usuario no Permitido!',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#3085d6'});
                 </script>
@@ -40,9 +39,9 @@ class loginController extends mainModel
                     echo "
                     <script>
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: 'Formato de Contraseña no Permitido',
+                        icon: 'warning',
+                        title: '¡Error al ingresar!',
+                        text: '¡Formato de Contraseña no Permitido!',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#3085d6'});
                     </script>
@@ -74,8 +73,8 @@ class loginController extends mainModel
                             <script>
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Error!',
-                                    text: 'Usuario o Contraseña Invalidos',
+                                    title: '¡Error al Ingresar!',
+                                    text: '¡Usuario o Contraseña Invalidos!',
                                     confirmButtonText: 'Aceptar',
                                     confirmButtonColor: '#3085d6'});
                             </script>
@@ -86,8 +85,8 @@ class loginController extends mainModel
                     <script>
                     Swal.fire({
                         icon: 'error',
-                        title: 'Error!',
-                        text: 'Usuario o Contraseña Invalidos',
+                        title: '¡Error al ingresar!',
+                        text: '¡Usuario o Contraseña Invalidos!',
                         confirmButtonText: 'Aceptar',
                         confirmButtonColor: '#3085d6'});
                     </script>
