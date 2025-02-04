@@ -20,8 +20,8 @@ class observationController extends mainModel{
         if (empty($observationReason) || empty($observationText) || empty($observationDate)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Observación!",
                 "text" => "¡Algunos campos se encuentran vacíos!",
             ];
             echo json_encode($alert);

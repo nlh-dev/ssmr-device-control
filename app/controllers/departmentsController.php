@@ -19,8 +19,8 @@ class departmentsController extends mainModel{
         if (empty($departmentName)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Departamento!",
                 "text" => "¡El campo se encuentra vacio!",
             ];
             return json_encode($alert);
@@ -32,13 +32,39 @@ class departmentsController extends mainModel{
         if ($checkDepartment->rowCount() >= 1) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al crear Departamento!",
                 "text" => "¡Este Departamento ya fue registrado!",
             ];
             return json_encode($alert);
             exit();
         }
+
+        $departmentRegisterData = [
+            [
+                "db_FieldName" => "department_Name",
+                "db_ValueName" => ":departmentName",
+                "db_realValue" => $departmentName
+            ],
+        ];
+
+        $addDepartment = $this->saveData("departments", $departmentRegisterData);
+        if ($addDepartment->rowCount() >= 1) {
+            $alert = [
+                "type" => "reload",
+                "icon" => "success",
+                "title" => "¡Operación Realizada!",
+                "text" => "Departamento registrado exitosamente!",
+            ];
+        } else {
+            $alert = [
+                "type" => "simple",
+                "icon" => "error",
+                "title" => "¡Error!",
+                "text" => "¡Error al registrar departamento!",
+            ];
+        }
+        return json_encode($alert);
     }
 
     public function departmentsListController($page, $register, $url, $search){
@@ -165,15 +191,14 @@ class departmentsController extends mainModel{
 
         $departmentID = $this->cleanRequest($_POST['department_ID']);
 
-        $checkDeleteDepartments_Query = "SELECT * FROM departments 
-        JOIN devices ON departments.department_ID = devices.device_department_ID";
+        $checkDeleteDepartments_Query = "SELECT * FROM devices WHERE device_department_ID = '$departmentID'";
         $checkDeleteDepartments_SQL = $this->dbRequestExecute($checkDeleteDepartments_Query);
-        if ($checkDeleteDepartments_SQL->rowCount() >= 1) {
+        if ($checkDeleteDepartments_SQL->rowCount() > 0) {
             $alert = [
                 "type" => "simple",
                 "icon" => "warning",
-                "title" => "Departamento no Eliminado!",
-                "text" => "No pudes eliminar este departamento!"
+                "title" => "¡Departamento no Eliminado!",
+                "text" => "¡No pudes eliminar este departamento!"
             ];
             return json_encode($alert);
             exit();
@@ -185,8 +210,8 @@ class departmentsController extends mainModel{
             $alert = [
                 "type" => "reload",
                 "icon" => "success",
-                "title" => "Departamento Eliminado!",
-                "text" => "Departamento eliminado exitosamente!"
+                "title" => "¡Departamento Eliminado!",
+                "text" => "¡Departamento eliminado exitosamente!"
             ];
         } else {
             $alert = [

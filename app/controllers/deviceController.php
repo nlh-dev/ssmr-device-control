@@ -29,8 +29,8 @@ class deviceController extends mainModel{
         if (empty($recievedByName) || empty($itemDescription) || empty($departmentName) || empty($itemCode) || empty($roomCode) || empty($deliveryDate)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al entregar!",
                 "text" => "¡Algunos campos se encuentran vacios!",
             ];
             return json_encode($alert);
@@ -435,10 +435,10 @@ class deviceController extends mainModel{
         
         if($deviceData -> rowCount() <= 0){
             $alert=[
-                "tipo"=>"simple",
-                "titulo"=>"¡Error!",
-                "texto"=>"Dispositivo no encontrado",
-                "icono"=>"error"
+                "type"=>"simple",
+                "icon"=>"error",
+                "title"=>"¡Error!",
+                "text"=>"Dispositivo no encontrado",
             ];
             return json_encode($alert);
             exit();
@@ -461,8 +461,8 @@ class deviceController extends mainModel{
         if (empty($recievedByName) || empty($itemDescription) || empty($departmentName) || empty($itemCode) || empty($roomCode) || empty($deliveryDate)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al Actualizar!",
                 "text" => "¡Algunos campos se encuentran vacios!",
             ];
             return json_encode($alert);
@@ -563,8 +563,8 @@ class deviceController extends mainModel{
         if (empty($withdrawDate) || empty($returnedByName)) {
             $alert = [
                 "type" => "simple",
-                "icon" => "error",
-                "title" => "¡Error!",
+                "icon" => "warning",
+                "title" => "¡Error al Retirar!",
                 "text" => "¡Algunos campos se encuentran vacios!",
             ];
             return json_encode($alert);
