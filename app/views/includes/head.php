@@ -10,7 +10,7 @@
 <link rel="icon" href="<?= APPURL; ?>/app/views/images/ssmr-1.png" type="image/x-icon">
 
 <!-- EXTERNAL IMPORTS -->
-<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="<?= APPURL; ?>/app/assets/flowbite/flowbite.min.css">
 
 <!-- APP TITLE -->
 <title><?= APPNAME?></title>
