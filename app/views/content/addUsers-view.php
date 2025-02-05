@@ -1,7 +1,9 @@
 <?php
-    use app\controllers\userController;
-    $roles = new userController();
-    $showRolesData = $roles -> getUsersRoleController();
+
+use app\controllers\userController;
+
+$roles = new userController();
+$showRolesData = $roles->getUsersRoleController();
 
 ?>
 
@@ -37,7 +39,7 @@
                 </li>
             </ol>
         </nav>
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
         <!-- BREADCRUMB ENDS -->
 
 
@@ -117,8 +119,10 @@
                     <select id="userRole" name="userRole" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="" selected>Selecione....</option>
                         <?php foreach ($showRolesData as $key => $rolesValue) { ?>
-                            <option value="<?= $rolesValue['role_ID']?>"><?= $rolesValue['role_Name']?></option>
-                        <?php }?>
+                            <?php if ($rolesValue['role_ID'] != 1) { ?>
+                                <option value="<?= $rolesValue['role_ID'] ?>"><?= $rolesValue['role_Name'] ?></option>
+                            <?php } ?>
+                        <?php } ?>
                     </select>
                 </div>
             </div>

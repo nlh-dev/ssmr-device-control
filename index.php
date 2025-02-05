@@ -27,8 +27,10 @@ if (isset($_GET['views'])) {
     use app\controllers\viewsController;
     use app\controllers\observationController;
     use app\controllers\deviceController;
+    use app\controllers\departmentsController;
 
     $instanceDevices = new deviceController();
+    $instanceDepartments = new departmentsController();
     $instanceObservations = new observationController();
     $instanceLogin = new loginController();
 
@@ -40,8 +42,7 @@ if (isset($_GET['views'])) {
     } else {
         //LOG OUT SESSION
         if((!isset($_SESSION['ID']) || $_SESSION['ID'] == "") || (!isset($_SESSION['userName']) || $_SESSION['userName'] == "")){
-            $instanceLogin->singOutController();
-            
+            $instanceLogin->singOutController(); 
         }
         require_once $views;
         require_once "./app/views/layouts/sidebar.php";

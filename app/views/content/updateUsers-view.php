@@ -8,7 +8,7 @@
         } else {
             include "./app/views/includes/components/breadcrumbUsers.php";
         } ?>
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
 
         <?php
         //SELECT USER DATA FROM DATABASE

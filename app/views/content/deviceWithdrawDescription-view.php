@@ -100,7 +100,7 @@
             </div>
 
             <div class="my-2">
-                <hr class="border-t border-gray-400">
+                <hr class="border-t border-gray-300">
             </div>
 
             <div class="flex items-center my-5">
@@ -119,12 +119,16 @@
                     </div>
 
                     <div class="items-center">
-                        <p class="font-bold mr-1">Entregado por: </p>
+                        <p class="font-bold mr-1">Devuelto por: </p>
                         <?= $deviceData['device_returnedByName'] ?>
                     </div>
                     <div class="items-center">
-                        <p class="font-bold mr-1">Fecha de Retiro: </p>
+                        <p class="font-bold mr-1">Fecha de Devolución: </p>
                         <?= $deviceData['device_withdrawalDate'] ?>
+                    </div>
+                    <div class="items-center">
+                        <p class="font-bold mr-1">Código de Habitación (Actual): </p>
+                        <?= $deviceData['device_currentRoomCode'] ?>
                     </div>
                 </div>
                 <div class="flex justify-end items-center sm:col-span-1 lg:col-span-2 xl:col-span-3 gap-3 mt-5">

@@ -30,7 +30,7 @@
             </ol>
         </nav>
         <!-- BREADCRUMB ENDS -->
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
 
         <?php
         //SELECT OBSERVATION DATA FROM DATABASE

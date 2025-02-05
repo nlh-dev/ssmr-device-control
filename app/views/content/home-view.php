@@ -15,7 +15,7 @@
             </ol>
         </nav>
 
-        <hr class="my-4 border-t border-gray-500">
+        <hr class="my-4 border-gray-300">
 
         <div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             <div class="p-6 bg-gray-800 rounded-lg hover:bg-gray-900 transition duration-100">
@@ -79,7 +79,7 @@
                         </ol>
                     </nav>
                 </div>
-                <hr class="border-t border-gray-500">
+                <hr class="border-gray-300">
                 <div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 mt-3">
 
                     <div class="p-6 bg-gray-800 rounded-lg hover:bg-gray-900 transition duration-100">

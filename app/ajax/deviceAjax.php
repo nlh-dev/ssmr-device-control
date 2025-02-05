@@ -20,6 +20,10 @@
         if ($_POST['deviceModule'] == "updateDevice") {
             echo $instanceDevice -> updateDeviceController();
         }
+
+        if ($_POST['deviceModule'] == "updateWithdrawDevice") {
+            echo $instanceDevice -> updateWithdrawDeviceController();
+        }
         
         if ($_POST['deviceModule'] == "withdrawDevice") {
             echo $instanceDevice -> withdrawDeviceController();

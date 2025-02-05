@@ -29,6 +29,7 @@ class viewsModel
         "updateUsers",
         "departments",
         "addDepartments",
+        "updateDepartments",
         ];
 
         if (in_array($views, $viewsList)){

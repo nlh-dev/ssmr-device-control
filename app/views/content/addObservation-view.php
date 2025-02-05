@@ -31,7 +31,7 @@
             </ol>
         </nav>
         <!-- BREADCRUMB ENDS -->
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
 
 
         <form action="<?= APPURL ?>app/ajax/observationsAjax.php" class="AjaxForm" method="POST" autocomplete="off">
@@ -94,7 +94,7 @@
                 <label class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
                 <div class="w-full mb-4 border border-gray-300 rounded-lg bg-gray-50">
                     <div class="px-4 py-2 bg-white rounded-t-lg">
-                        <textarea id="observationText" name="observationText" rows="5" class="w-full px-0 text-sm text-gray-900 bg-white border-0" placeholder="Redactar Observación...."></textarea>
+                    <textarea id="observationText" name="observationText" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 focus:ring-0" placeholder="Redactar Observación...."></textarea>
                     </div>
                     <div class="flex items-center justify-end px-3 py-2 border-t border-gray-300">
                         <div class="mr-3">

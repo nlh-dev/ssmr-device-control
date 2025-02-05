@@ -23,7 +23,7 @@
         </nav>
         <!-- BREADCRUMB ENDS -->
         
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
 
         <form action="<?= APPURL ?>app/ajax/departmentsAjax.php" class="AjaxForm" method="POST">
             <div class="flex items-center max-w-sm ml-auto my-4">

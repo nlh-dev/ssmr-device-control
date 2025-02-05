@@ -30,7 +30,7 @@
                 </li>
             </ol>
         </nav>
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
         <!-- BREADCRUMB ENDS -->
 
         <?php

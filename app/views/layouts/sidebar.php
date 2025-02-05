@@ -35,7 +35,7 @@
                             </p>
                         </div>
                         <ul class="py-1 px-2" role="none">
-                            <div class="border-t border-gray-500">
+                            <div class="">
                                 <li class="mt-2">
                                     <a href="<?= APPURL ?>updateUsers/<?= $_SESSION['ID'] ?>/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 hover:text-white rounded-lg transition duration-100">Perfil</a>
                                 </li>

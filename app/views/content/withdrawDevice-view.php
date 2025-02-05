@@ -30,7 +30,7 @@
                 </li>
             </ol>
         </nav>
-        <hr class="my-4">
+        <hr class="my-4 border-gray-300">
         <!-- BREADCRUMB ENDS -->
 
         <?php
@@ -80,7 +80,7 @@
                     </div>
 
                     <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900">Entregado por: </label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Devuelto por: </label>
                         <div class="relative mb-3">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -90,8 +90,22 @@
                             <input type="text" id="returnedByName" name="returnedByName" class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Inserte quien devuelve el Artículo...." value="">
                         </div>
                     </div>
+
                     <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900">Fecha de Retiro</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Código de Habitación (Actual)</label>
+                        <div class="relative mb-3">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M2.535 11A3.981 3.981 0 0 0 2 13v4a1 1 0 0 0 1 1h2v1a1 1 0 1 0 2 0v-1h10v1a1 1 0 1 0 2 0v-1h2a1 1 0 0 0 1-1v-4c0-.729-.195-1.412-.535-2H2.535ZM20 9V8a4 4 0 0 0-4-4h-3v5h7Zm-9-5H8a4 4 0 0 0-4 4v1h7V4Z" />
+                                </svg>
+
+                            </div>
+                            <input type="text" id="currentRoomCode" name="currentRoomCode" class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Inserte Código de Habitación...." value="">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Fecha de Devolución</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
