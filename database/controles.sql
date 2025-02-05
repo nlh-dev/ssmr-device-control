@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-02-2025 a las 20:47:28
+-- Tiempo de generación: 05-02-2025 a las 19:48:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,7 +39,9 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` (`department_ID`, `department_Name`) VALUES
 (1, 'PISO 2, LADO A'),
 (2, 'PISO 2, LADO B'),
-(3, 'PISO 3, LADO A');
+(3, 'PISO 3, LADO A'),
+(4, 'PISO 3, LADO B'),
+(5, 'PISO 5, LADO A');
 
 -- --------------------------------------------------------
 
@@ -51,23 +53,17 @@ CREATE TABLE `devices` (
   `device_ID` int(11) NOT NULL,
   `device_userFullName` text NOT NULL,
   `device_recievedByName` text NOT NULL,
+  `device_deliveryDate` varchar(15) NOT NULL,
   `device_Description` text NOT NULL,
   `device_serialCode` varchar(50) NOT NULL,
-  `device_RoomCode` varchar(50) NOT NULL,
   `device_department_ID` int(50) NOT NULL,
-  `device_deliveryDate` varchar(15) NOT NULL,
-  `device_withdrawalDate` varchar(15) NOT NULL,
+  `device_RoomCode` varchar(50) NOT NULL,
   `device_withdrawByName` text NOT NULL,
   `device_returnedByName` text NOT NULL,
+  `device_currentRoomCode` varchar(50) NOT NULL,
+  `device_withdrawalDate` varchar(15) NOT NULL,
   `device_isDelivered` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `devices`
---
-
-INSERT INTO `devices` (`device_ID`, `device_userFullName`, `device_recievedByName`, `device_Description`, `device_serialCode`, `device_RoomCode`, `device_department_ID`, `device_deliveryDate`, `device_withdrawalDate`, `device_withdrawByName`, `device_returnedByName`, `device_isDelivered`) VALUES
-(1, 'USUARIO ADMINISTRADOR', 'DANNY MORAN', 'CONTROL SAMSUNG', 'HM-2-636', 'A-303', 1, '04/02/2025', '07/02/2025', 'USUARIO ADMINISTRADOR', 'JUAN BOZO', 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +97,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`role_ID`, `role_Name`) VALUES
 (1, 'Usuario Administrador'),
-(2, 'Usuario Estandar');
+(2, 'Usuario Estandar'),
+(3, 'Usuario Enfermero');
 
 -- --------------------------------------------------------
 
@@ -171,13 +168,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `department_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `department_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `device_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `observations`
@@ -189,7 +186,7 @@ ALTER TABLE `observations`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `role_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
