@@ -17,7 +17,7 @@
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
                     <div>
-                        <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                        <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 transition duration-100" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
                             <svg class="w-8 h-8 rounded-full text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd" />
@@ -30,11 +30,11 @@
                                 <?= $_SESSION['firstName']; ?>
                                 <?= $_SESSION['lastName']; ?>
                             </p>
-                            <p class="text-sm font-medium text-gray-900 truncate" role="none">
+                            <p class="text-sm font-medium text-gray-900" role="none">
                                 Rol: <?= $_SESSION['roleName']; ?>
                             </p>
                         </div>
-                        <ul class="py-1 px-2" role="none">
+                        <ul class="py-1 px-2 border-t border-gray-300" role="none">
                             <div class="">
                                 <li class="mt-2">
                                     <a href="<?= APPURL ?>updateUsers/<?= $_SESSION['ID'] ?>/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-700 hover:text-white rounded-lg transition duration-100">Perfil</a>
