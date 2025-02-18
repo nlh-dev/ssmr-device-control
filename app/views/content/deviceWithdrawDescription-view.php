@@ -68,7 +68,9 @@
                 </div>
                 <div class="items-center">
                     <p class="font-bold mr-1">Fecha de Entrega: </p>
-                    <?= $deviceData['device_deliveryDate'] ?>
+                    <?= $deviceData['device_deliveryDate'] ?> -
+                    <?= date('H:i A', strtotime($deviceData['device_deliveryTime'])) ?>
+
                 </div>
                 <div class="items-center">
                     <p class="font-bold mr-1">Descripción de Articulo: </p>
@@ -124,7 +126,8 @@
                     </div>
                     <div class="items-center">
                         <p class="font-bold mr-1">Fecha de Devolución: </p>
-                        <?= $deviceData['device_withdrawalDate'] ?>
+                        <?= $deviceData['device_withdrawalDate'] ?> - 
+                        <?= date('H:i A', strtotime($deviceData['device_withdrawalTime']))?>
                     </div>
                     <div class="items-center">
                         <p class="font-bold mr-1">Código de Habitación (Actual): </p>

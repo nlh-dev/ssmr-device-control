@@ -61,7 +61,9 @@
                 </div>
                 <div class="flex items-center">
                     <p class="font-bold mr-1">Fecha de Creación: </p>
-                    <?= $observationData['observation_creationDate'] ?>
+                    <?= $observationData['observation_creationDate'] ?> -
+                    <?= date('H:i A', strtotime($observationData['observation_creationTime'])) ?>
+
                 </div>
 
                 <div>

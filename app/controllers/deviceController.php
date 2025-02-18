@@ -69,8 +69,13 @@ class deviceController extends mainModel{
             ],
             [
                 "db_FieldName" => "device_deliveryDate",
-                "db_ValueName" => ":Role",
+                "db_ValueName" => ":deliveryDate",
                 "db_realValue" => $deliveryDate
+            ],
+            [
+                "db_FieldName" => "device_deliveryTime",
+                "db_ValueName" => ":deliveryTime",
+                "db_realValue" => date('H:i:s')
             ],
             [
                 "db_FieldName" => "device_Description",
@@ -141,9 +146,10 @@ class deviceController extends mainModel{
         OR device_serialCode LIKE '%$search%' 
         OR device_RoomCode LIKE '%$search%' 
         OR device_department_ID LIKE '%$search%' 
-        OR device_deliveryDate LIKE '%$search%')
+        OR device_deliveryDate LIKE '%$search%'
+        OR device_deliveryTime LIKE '%$search%')
         AND device_isDelivered = 1
-        ORDER BY device_deliveryDate
+        ORDER BY device_deliveryDate, device_deliveryTime
         DESC LIMIT $start,$register";
 
         $totalData_Query = "SELECT COUNT(device_ID) FROM devices 
@@ -155,6 +161,7 @@ class deviceController extends mainModel{
         OR device_serialCode LIKE '%$search%' 
         OR device_RoomCode LIKE '%$search%' 
         OR device_department_ID LIKE '%$search%' 
+        OR device_deliveryTime LIKE '%$search%'
         OR device_deliveryDate LIKE '%$search%')
         AND device_isDelivered = 1";
 
@@ -191,7 +198,7 @@ class deviceController extends mainModel{
                         <td class="px-6 py-3 uppercase"> ' . $counter . ' </td>
                         <td class="px-6 py-3 font-medium text-gray-900 uppercase">' . $rows['device_Description'] . '</td>
                         <td class="px-6 py-3">' . $rows['device_serialCode'] . '</td>
-                        <td class="px-6 py-3">' . $rows['device_deliveryDate'] . '</td>
+                        <td class="px-6 py-3">' . $rows['device_deliveryDate'] . ' - '.date('H:i A', strtotime($rows['device_deliveryTime'])).'</td>
                         <td class="px-6 py-3 text-center">
                         <a href="' . APPURL . 'deviceDescription/' . $rows['device_ID'] . '/" class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
                             <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -302,11 +309,12 @@ class deviceController extends mainModel{
         OR device_department_ID LIKE '%$search%' 
         OR device_deliveryDate LIKE '%$search%'
         OR device_withdrawalDate LIKE '%$search%'
+        OR device_withdrawalTime LIKE '%$search%'
         OR device_withdrawByName LIKE '%$search%'
         OR device_returnedByName LIKE '%$search%'
         OR device_currentRoomCode LIKE '%$search%')
         AND device_isDelivered = 0
-        ORDER BY device_withdrawalDate
+        ORDER BY device_withdrawalDate, device_withdrawalTime
         DESC LIMIT $start,$register";
 
         $totalData_Query = "SELECT COUNT(device_ID) FROM devices 
@@ -320,6 +328,7 @@ class deviceController extends mainModel{
         OR device_department_ID LIKE '%$search%' 
         OR device_deliveryDate LIKE '%$search%'
         OR device_withdrawalDate LIKE '%$search%'
+        OR device_withdrawalTime LIKE '%$search%'
         OR device_withdrawByName LIKE '%$search%'
         OR device_returnedByName LIKE '%$search%'
         OR device_currentRoomCode LIKE '%$search%')
@@ -358,7 +367,7 @@ class deviceController extends mainModel{
                         <td class="px-6 py-3 uppercase"> ' . $counter . ' </td>
                         <td class="px-6 py-3 font-medium text-gray-900 uppercase">' . $rows['device_Description'] . '</td>
                         <td class="px-6 py-3">' . $rows['device_serialCode'] . '</td>
-                        <td class="px-6 py-3">' . $rows['device_withdrawalDate'] . '</td>
+                        <td class="px-6 py-3">' . $rows['device_withdrawalDate'] . ' - '.date('H:i A', strtotime($rows['device_withdrawalTime'])).'</td>
                         <td class="px-6 py-3 text-center">
                         <a href="' . APPURL . 'deviceWithdrawDescription/' . $rows['device_ID'] . '/" class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
                             <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -687,6 +696,11 @@ class deviceController extends mainModel{
                 "db_FieldName" => "device_withdrawalDate",
                 "db_ValueName" => ":withdrawDate",
                 "db_realValue" => $withdrawDate
+            ],
+            [
+                "db_FieldName" => "device_withdrawalTime",
+                "db_ValueName" => ":withdrawTime",
+                "db_realValue" => date('H:i:s')
             ],
             [
                 "db_FieldName" => "device_currentRoomCode",

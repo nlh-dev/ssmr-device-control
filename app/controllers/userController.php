@@ -136,12 +136,12 @@ class userController extends mainModel{
 
         if (isset($search) && $search != "") {
 
-            $dataRequest_Query = "SELECT * FROM users WHERE ((user_role_ID!='" . $_SESSION['role'] . "' AND user_role_ID!='1') AND (user_FirstName LIKE '%$search%' OR user_LastName LIKE '%$search%' OR user_userName LIKE '%$search%')) ORDER BY user_role_ID DESC LIMIT $start,$register";
+            $dataRequest_Query = "SELECT * FROM users WHERE ((user_role_ID!='" . $_SESSION['role'] . "' AND user_role_ID!='1') AND (user_FirstName LIKE '%$search%' OR user_LastName LIKE '%$search%' OR user_userName LIKE '%$search%')) ORDER BY user_FirstName, user_LastName DESC LIMIT $start,$register";
 
             $totalData_Query = "SELECT COUNT(user_ID) FROM users WHERE ((user_role_ID!='" . $_SESSION['role'] . "' AND user_role_ID!='1') AND (user_FirstName LIKE '%$search%' OR user_LastName LIKE '%$search%' OR user_userName LIKE '%$search%'))";
         } else {
 
-            $dataRequest_Query = "SELECT * FROM users JOIN roles ON users.user_role_ID = roles.role_ID WHERE user_role_ID!='" . $_SESSION['role'] . "' AND user_role_ID!='1' ORDER BY user_role_ID DESC LIMIT $start,$register";
+            $dataRequest_Query = "SELECT * FROM users JOIN roles ON users.user_role_ID = roles.role_ID WHERE user_role_ID!='" . $_SESSION['role'] . "' AND user_role_ID!='1' ORDER BY user_FirstName, user_LastName DESC LIMIT $start,$register";
 
             $totalData_Query = "SELECT COUNT(user_ID) FROM users JOIN roles ON users.user_role_ID = roles.role_ID WHERE user_role_ID!='" . $_SESSION['role'] . "' AND user_role_ID!='1'";
         }

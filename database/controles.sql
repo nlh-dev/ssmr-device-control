@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-02-2025 a las 19:48:48
+-- Tiempo de generación: 18-02-2025 a las 20:16:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,6 +54,7 @@ CREATE TABLE `devices` (
   `device_userFullName` text NOT NULL,
   `device_recievedByName` text NOT NULL,
   `device_deliveryDate` varchar(15) NOT NULL,
+  `device_deliveryTime` time NOT NULL,
   `device_Description` text NOT NULL,
   `device_serialCode` varchar(50) NOT NULL,
   `device_department_ID` int(50) NOT NULL,
@@ -62,6 +63,7 @@ CREATE TABLE `devices` (
   `device_returnedByName` text NOT NULL,
   `device_currentRoomCode` varchar(50) NOT NULL,
   `device_withdrawalDate` varchar(15) NOT NULL,
+  `device_withdrawalTime` time NOT NULL,
   `device_isDelivered` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -77,6 +79,7 @@ CREATE TABLE `observations` (
   `observation_reason` text NOT NULL,
   `observation_text` text NOT NULL,
   `observation_creationDate` varchar(15) NOT NULL,
+  `observation_creationTime` time NOT NULL,
   `observation_isChecked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -122,7 +125,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_ID`, `user_FirstName`, `user_LastName`, `user_userName`, `user_Password`, `user_role_ID`) VALUES
 (1, 'Usuario', 'Administrador', 'administrador', 'HospitalAdmin99', 1),
 (2, 'Hector', 'Navarro', 'hectorlnavarro', '27822521', 2),
-(19, 'Juan Carlos', 'Bozo', 'juancbozo', 'juanc12345', 2);
+(3, 'Juan Carlos', 'Bozo', 'juancbozo', '12869122', 2),
+(4, 'danny', 'moran', 'dannymoran', '26032727', 2),
+(5, 'david', 'herrera', 'davidherrera', '15942960', 2);
 
 --
 -- Índices para tablas volcadas
@@ -180,7 +185,7 @@ ALTER TABLE `devices`
 -- AUTO_INCREMENT de la tabla `observations`
 --
 ALTER TABLE `observations`
-  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `observation_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -192,7 +197,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas

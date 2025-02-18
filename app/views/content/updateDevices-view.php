@@ -136,9 +136,9 @@
                     <label class="block mb-2 text-sm font-medium text-gray-900">Departamento</label>
                     <div class="relative mb-3">
                         <select id="departmentName" name="departmentName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.">
-                            <option value="" selected>Selecione....</option>
+                            <option value="">Selecione....</option>
                             <?php foreach ($showDepartmentsData as $key => $departmentsValue) { ?>
-                                <option value="<?= $departmentsValue['department_ID'] ?>"><?= $departmentsValue['department_Name'] ?></option>
+                                <option value="<?= $departmentsValue['department_ID'] ?>" <?= ($deviceData['device_department_ID'] == $departmentsValue['department_ID'] ? "selected" : "")?>><?= $departmentsValue['department_Name'] ?></option>
                             <?php } ?>
                         </select>
                     </div>

@@ -52,6 +52,11 @@ class observationController extends mainModel{
                 "db_realValue" => $observationDate
             ],
             [
+                "db_FieldName" => "observation_creationTime",
+                "db_ValueName" => ":creationTime",
+                "db_realValue" => date('H:i:s')
+            ],
+            [
                 "db_FieldName" => "observation_isChecked",
                 "db_ValueName" => ":isObservationChecked",
                 "db_realValue" => 0
@@ -96,8 +101,9 @@ class observationController extends mainModel{
         WHERE observation_user LIKE '%$search%' 
         OR observation_reason LIKE '%$search%' 
         OR observation_text LIKE '%$search%' 
-        OR observation_creationDate LIKE '%$search%' 
-        ORDER BY observation_ID 
+        OR observation_creationDate LIKE '%$search%'
+        OR observation_creationTime LIKE '%$search%'
+        ORDER BY observation_creationDate, observation_creationTime 
         DESC LIMIT $start,$register";
 
         $totalData_Query = "SELECT COUNT(observation_ID) FROM observations
@@ -137,7 +143,7 @@ class observationController extends mainModel{
                     <tr class="bg-white border-b border-gray-200 hover:bg-gray-200">
                         <td class="px-6 py-3 uppercase"> ' . $counter . ' </td>
                         <td class="px-6 py-3 font-medium text-gray-900 uppercase">'.$rows['observation_user'].'</td>
-                        <td class="px-6 py-3">' . $rows['observation_creationDate'] . '</td>
+                        <td class="px-6 py-3">' . $rows['observation_creationDate'] . ' - '.date('H:i A', strtotime($rows['observation_creationTime'])).'</td>
                         <td class="px-6 py-3 text-center">
                         <a href="' . APPURL . 'observationDescription/' . $rows['observation_ID'] . '/" class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-base p-2.5 text-center inline-flex items-center me-2 transition duration-100">
                             <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
